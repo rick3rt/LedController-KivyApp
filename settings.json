@@ -1,0 +1,23 @@
+[
+  {
+    "type": "string",
+    "title": "Label caption",
+    "desc": "Choose the text that appears in the label",
+    "section": "Config",
+    "key": "text"
+  },
+  {
+    "type": "numeric",
+    "title": "Label font size",
+    "desc": "Choose the font size the label",
+    "section": "Config",
+    "key": "font_size"
+  },
+  {
+    "type": "string",
+    "title": "Url",
+    "desc": "Url to connect to",
+    "section": "Config",
+    "key": "url"
+  }
+]

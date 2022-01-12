@@ -1,0 +1,109 @@
+#:kivy 2.0.0
+
+<MySlider>:
+    orientation: 'horizontal'
+    canvas.before:
+        Color:
+            rgba: self.color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        text: root.lbl
+        width: '100dp'
+        size_hint_x: None
+    Slider:
+        id: sldr
+        min: root.min
+        max: root.max
+        # value: root.value
+        bind: root.on_value_change(self, self.value)
+    Label:
+        text: str(round(sldr.value))
+        width: '100dp'
+        size_hint_x: None
+
+
+
+
+BoxLayout:
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: '5dp', '5dp', '5dp', '5dp'
+        spacing: '5dp'
+        # size_hint: (1, None)
+        # size: (0, 50)
+
+        Button:
+            text: 'Configure'
+            on_release: app.open_settings()
+        Button:
+            text: "Test Connection"
+            on_release: app.test_connection()
+        Button:
+            text: "Quit"
+            on_release: app.stop()
+    BoxLayout:
+        orientation: 'horizontal'
+        spacing: '5dp'
+        padding: '5dp', '5dp', '5dp', '5dp'
+        Label:
+            id: status_label
+            text: 'Ready'
+        Button:
+            id: update_btn
+            text: "Update"
+            width: '100dp'
+            size_hint_x: None
+            on_release: app.get_slider_values()
+
+
+    MySlider:
+        id: sldr_bright
+        min: 0
+        max: 255
+        step: 1
+        lbl: 'Brightness'
+    MySlider:
+        id: sldr_red
+        min: 0
+        max: 255
+        step: 1
+        lbl: 'Red'
+        color: 1,0,0,0.2
+    MySlider:
+        id: sldr_green
+        min: 0
+        max: 255
+        step: 1
+        lbl: 'Green'
+        color: 0,1,0,0.2
+    MySlider:
+        id: sldr_blue
+        min: 0
+        max: 255
+        step: 1
+        lbl: 'Blue'
+        color: 0,0,1,0.2
+
+
+
+        
+    BoxLayout:
+        orientation: 'horizontal'
+        spacing: '5dp'
+
+        ScrollView:
+            id: scrlv
+            TextInput:
+                id: textinput
+                text: "MessageToSend"
+                size_hint: 1, None
+                height: max(self.minimum_height, scrlv.height)
+        Button:
+            text: "Send"
+            size_hint: (0.1, 1)
+            # on_release: app.send_GET_request("message", textinput.text)
+            on_release: app.send_POST_request("message", textinput.text)
+            # on_release: app.send_message(textinput.text)
