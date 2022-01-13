@@ -25,6 +25,29 @@
         "showReuseMessage": true,
         "clear": false
       }
+    },
+    {
+      "label": "Build app",
+      "type": "shell",
+      "command": "buildozer android debug deploy run",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "isBackground": true,
+      "runOptions": {
+        "instanceLimit": 1
+      },
+      "presentation": {
+        "close": false,
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      }
     }
   ]
 }

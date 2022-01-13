@@ -152,7 +152,16 @@ class MyApp(App, MyConnection):
                    "blue": rgb[2]}
         print(payload)
         self.send_POST_request('led', payload)
-        # return payload
+
+    def get_wheel_value(self):
+        brightness = self.root.ids.sldr_bright.value
+        rgb = self.root.ids.colorpicker.color[0:3]
+        payload = {"brightness": brightness,
+                   "red": int(rgb[0]*255),
+                   "green": int(rgb[1]*255),
+                   "blue": int(rgb[2]*255)}
+        print(payload)
+        self.send_POST_request('led', payload)
 
     def build_config(self, config):
         """

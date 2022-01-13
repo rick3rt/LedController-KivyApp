@@ -16,7 +16,7 @@
         id: sldr
         min: root.min
         max: root.max
-        # value: root.value
+        value: root.value
         bind: root.on_value_change(self, self.value)
     Label:
         text: str(round(sldr.value))
@@ -32,8 +32,8 @@ BoxLayout:
         orientation: 'horizontal'
         padding: '5dp', '5dp', '5dp', '5dp'
         spacing: '5dp'
-        # size_hint: (1, None)
-        # size: (0, 50)
+        size_hint_y: None
+        height: '50dp'
 
         Button:
             text: 'Configure'
@@ -45,6 +45,9 @@ BoxLayout:
             text: "Quit"
             on_release: app.stop()
     BoxLayout:
+        size_hint_y: None
+        height: '50dp'
+
         orientation: 'horizontal'
         spacing: '5dp'
         padding: '5dp', '5dp', '5dp', '5dp'
@@ -63,47 +66,37 @@ BoxLayout:
         id: sldr_bright
         min: 0
         max: 255
+        value: 100
         step: 1
         lbl: 'Brightness'
-    MySlider:
-        id: sldr_red
-        min: 0
-        max: 255
-        step: 1
-        lbl: 'Red'
-        color: 1,0,0,0.2
-    MySlider:
-        id: sldr_green
-        min: 0
-        max: 255
-        step: 1
-        lbl: 'Green'
-        color: 0,1,0,0.2
-    MySlider:
-        id: sldr_blue
-        min: 0
-        max: 255
-        step: 1
-        lbl: 'Blue'
-        color: 0,0,1,0.2
+    # ColorWheel:
+    #     id: colorpicker
+    #     height: '400dp'
+    #     size_hint_y: None
+    #     color: 1,1,1,1
+        # on_touch_move: app.get_wheel_value()
+        # on_touch_up: app.get_wheel_value()
+        # r: 1
+        # g: 1
+        # b: 1
 
 
 
         
-    BoxLayout:
-        orientation: 'horizontal'
-        spacing: '5dp'
+    # BoxLayout:
+    #     orientation: 'horizontal'
+    #     spacing: '5dp'
 
-        ScrollView:
-            id: scrlv
-            TextInput:
-                id: textinput
-                text: "MessageToSend"
-                size_hint: 1, None
-                height: max(self.minimum_height, scrlv.height)
-        Button:
-            text: "Send"
-            size_hint: (0.1, 1)
-            # on_release: app.send_GET_request("message", textinput.text)
-            on_release: app.send_POST_request("message", textinput.text)
-            # on_release: app.send_message(textinput.text)
+    #     ScrollView:
+    #         id: scrlv
+    #         TextInput:
+    #             id: textinput
+    #             text: "MessageToSend"
+    #             size_hint: 1, None
+    #             height: max(self.minimum_height, scrlv.height)
+    #     Button:
+    #         text: "Send"
+    #         size_hint: (0.1, 1)
+    #         # on_release: app.send_GET_request("message", textinput.text)
+    #         on_release: app.send_POST_request("message", textinput.text)
+    #         # on_release: app.send_message(textinput.text)
