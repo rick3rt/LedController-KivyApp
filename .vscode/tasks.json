@@ -6,7 +6,7 @@
     {
       "label": "run app",
       "type": "shell",
-      "command": "python3 main.py",
+      "command": "python3 main.py --size=500x1000 --dpi=50",
       "problemMatcher": [],
       "group": {
         "kind": "build",
@@ -47,6 +47,32 @@
         "panel": "shared",
         "showReuseMessage": true,
         "clear": false
+      }
+    },
+    {
+      "label": "Test server",
+      "type": "shell",
+      "command": "python3 server.py",
+      "problemMatcher": [],
+      "isBackground": true,
+      "runOptions": {
+        "instanceLimit": 1
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/test_server"
+      }
+    },
+    {
+      "label": "Test GUI",
+      "type": "shell",
+      "command": "python3 test_gui.py",
+      "problemMatcher": [],
+      "isBackground": true,
+      "runOptions": {
+        "instanceLimit": 1
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/test"
       }
     }
   ]

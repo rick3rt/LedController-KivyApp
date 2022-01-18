@@ -1,0 +1,109 @@
+#:kivy 2.0.0
+#:import Gradient gradient.Gradient 
+#:import hsv2rgba color.hsv2rgba
+
+<-ColorSlider@Slider>
+    # bind: self.on_value_change(self, self.value)
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        BorderImage:
+            border: self.border_horizontal if self.orientation == 'horizontal' else self.border_vertical
+            pos: (self.x + self.padding, self.center_y - self.background_width / 2) if self.orientation == 'horizontal' else (self.center_x - self.background_width / 2, self.y + self.padding)
+            size: (self.width - self.padding * 2, self.background_width) if self.orientation == 'horizontal' else (self.background_width, self.height - self.padding * 2)
+            source: (self.background_disabled_horizontal if self.orientation == 'horizontal' else self.background_disabled_vertical) if self.disabled else (self.background_horizontal if self.orientation == 'horizontal' else self.background_vertical)
+        Color:
+            rgba: root.value_track_color if self.value_track and self.orientation == 'horizontal' else [1, 1, 1, 0]
+        Line:
+            width: self.value_track_width
+            points: self.x + self.padding, self.center_y, self.value_pos[0], self.center_y
+        Color:
+            rgba: root.value_track_color if self.value_track and self.orientation == 'vertical' else [1, 1, 1, 0]
+        Line:
+            width: self.value_track_width
+            points: self.center_x, self.y + self.padding, self.center_x, self.value_pos[1]
+        Color:
+            rgba: self.knobcolor_opaque
+        Ellipse:
+            size: self.knobsize, self.knobsize
+            pos: self.value_pos[0] - self.knobsize/2, self.center_y - self.knobsize/2 - self.value_track_width/2
+
+        Color:
+            rgba: self.knobcolor_solid
+        Ellipse:
+            size: self.innerknobsize, self.innerknobsize
+            pos: self.value_pos[0] - self.innerknobsize/2, self.center_y - self.innerknobsize/2 - self.value_track_width/2
+        Line:
+            circle: self.value_pos[0], self.center_y - self.value_track_width/2, self.knobsize/2
+            width: 2
+
+<-HSVColorSlider@Slider>
+    bind: self.on_value_change(self, self.value)
+    value_track_width: 5
+    canvas:
+        # draw HSV slider
+        Rectangle:
+            pos: (self.x + self.padding, self.center_y - self.value_track_width) if self.orientation == 'horizontal' else (self.center_x - self.value_track_width, self.y + self.padding)
+            size: (self.width - self.padding * 2, self.value_track_width) if self.orientation == 'horizontal' else (self.value_track_width, self.height - self.padding * 2)
+            texture: Gradient.horizontal(*[hsv2rgba((x,1,1)) for x in range(360)]) if self.orientation == 'horizontal' else   Gradient.vertical(*[hsv2rgba((x,1,1)) for x in range(360)])
+        # Color:
+        #     rgba: self.knobcolor_opaque
+        # Ellipse:
+        #     size: (self.knobsize+20), (self.knobsize+20)
+        #     pos: self.value_pos[0]-(self.knobsize+20)/2, self.center_y - (self.knobsize+20)/2
+        # Color:
+        #     rgba: self.knobcolor_solid
+        # Ellipse:
+        #     size: self.knobsize, self.knobsize
+        #     pos: self.value_pos[0]-self.knobsize/2, self.center_y - self.knobsize/2
+        Color:
+            rgba: root.value_track_color if self.value_track and self.orientation == 'horizontal' else [1, 1, 1, 0]
+        Line:
+            width: self.value_track_width
+            points: self.x + self.padding, self.center_y, self.value_pos[0], self.center_y
+        Color:
+            rgba: root.value_track_color if self.value_track and self.orientation == 'vertical' else [1, 1, 1, 0]
+        Line:
+            width: self.value_track_width
+            points: self.center_x, self.y + self.padding, self.center_x, self.value_pos[1]
+        Color:
+            rgba: self.knobcolor_opaque
+        Ellipse:
+            size: self.knobsize, self.knobsize
+            pos: self.value_pos[0] - self.knobsize/2, self.center_y - self.knobsize/2 - self.value_track_width/2
+
+        Color:
+            rgba: self.knobcolor_solid
+        Ellipse:
+            size: self.innerknobsize, self.innerknobsize
+            pos: self.value_pos[0] - self.innerknobsize/2, self.center_y - self.innerknobsize/2 - self.value_track_width/2
+        Line:
+            circle: self.value_pos[0], self.center_y - self.value_track_width/2, self.knobsize/2
+            width: 2
+
+
+
+<MySlider>:
+    orientation: 'horizontal'
+    # canvas.before:
+    #     Color:
+    #         rgba: self.color
+    #     Rectangle:
+    #         pos: self.pos
+    #         size: self.size
+    Label:
+        text: root.lbl
+        width: '100dp'
+        size_hint_x: None
+    Slider:
+        id: sldr
+        min: root.min
+        max: root.max
+        value: root.value
+        bind: root.on_value_change(self, self.value)
+        # value_track: True
+        # value_track_color: 0.95,0.92,0,1
+    Label:
+        text: str(round(sldr.value*100)) + "%"
+        width: '100dp'
+        size_hint_x: None
