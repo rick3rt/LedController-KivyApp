@@ -2,6 +2,31 @@
 #:import Gradient gradient.Gradient 
 #:import hsv2rgba color.hsv2rgba
 
+<MySlider>:
+    orientation: 'horizontal'
+    # canvas.before:
+    #     Color:
+    #         rgba: self.color
+    #     Rectangle:
+    #         pos: self.pos
+    #         size: self.size
+    Label:
+        text: root.lbl
+        width: '100dp'
+        size_hint_x: None
+    Slider:
+        id: sldr
+        min: root.min
+        max: root.max
+        value: root.value
+        bind: root.on_value_change(self, self.value)
+        # value_track: True
+        # value_track_color: 0.95,0.92,0,1
+    Label:
+        text: str(round(sldr.value*100)) + "%"
+        width: '100dp'
+        size_hint_x: None
+
 <-ColorSlider@Slider>
     # bind: self.on_value_change(self, self.value)
     canvas:
@@ -39,7 +64,7 @@
 
 <-HSVColorSlider@Slider>
     bind: self.on_value_change(self, self.value)
-    value_track_width: 5
+    value_track_width: '5sp'
     canvas:
         # draw HSV slider
         Rectangle:
@@ -81,29 +106,44 @@
             circle: self.value_pos[0], self.center_y - self.value_track_width/2, self.knobsize/2
             width: 2
 
-
-
-<MySlider>:
-    orientation: 'horizontal'
-    # canvas.before:
-    #     Color:
-    #         rgba: self.color
-    #     Rectangle:
-    #         pos: self.pos
-    #         size: self.size
-    Label:
-        text: root.lbl
-        width: '100dp'
-        size_hint_x: None
-    Slider:
-        id: sldr
-        min: root.min
-        max: root.max
-        value: root.value
+<HSVSliderGroup>:
+    orientation: 'vertical'
+    # padding: '2dp'
+    MySlider:
+        min: 0
+        max: 1
+        value: 1
+        step: 0.01
+        id: sldr_saturation
+        lbl: 'Saturation'
         bind: root.on_value_change(self, self.value)
-        # value_track: True
-        # value_track_color: 0.95,0.92,0,1
-    Label:
-        text: str(round(sldr.value*100)) + "%"
-        width: '100dp'
-        size_hint_x: None
+    MySlider:
+        min: 0
+        max: 1
+        value: 1
+        step: 0.01
+        id: sldr_value
+        lbl: 'Brightness'
+        bind: root.on_value_change(self, self.value)
+    HSVColorSlider:
+        id: sldr_hue
+        min: 0
+        max: 360
+        value: 180
+        step: 0.5
+        bind: root.on_value_change(self, self.value)
+    BoxLayout:
+        orientation: 'horizontal'
+        # padding: '2dp'
+        Label:
+            text: "Color"
+        Label:
+            text: "trest"
+            canvas.before:
+                Color:
+                    rgba: root.myrgb
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+

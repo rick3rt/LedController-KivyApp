@@ -1,1 +1,5 @@
-{ "python.pythonPath": "/usr/bin/python3" }
+{
+  "python.pythonPath": "/home/rw/Documents/Programming/python/kivy/kivy_env/bin/python",
+  "python.formatting.autopep8Args": ["--ignore", "E402"],
+  "kvlang.pythonPath": "/home/rw/Documents/Programming/python/kivy/kivy_env/bin/python"
+}

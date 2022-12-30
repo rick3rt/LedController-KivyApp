@@ -1,6 +1,8 @@
 
-
 def hsv2rgb(hsv):
+    """
+    Convert hsv to rgb colorspace.
+    """
     H = hsv[0] % 360  # hue, between 0 and 360
     S = hsv[1]  # saturation, between 0 and 1
     V = hsv[2]  # value, between 0 and 1
@@ -28,4 +30,8 @@ def hsv2rgb(hsv):
 
 
 def hsv2rgba(hsv):
+    """
+    Convert hsv to rgba colorspace.
+    Sets alpha value to 1.
+    """
     return hsv2rgb(hsv) + (1,)

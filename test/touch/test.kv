@@ -1,0 +1,23 @@
+#:kivy 1.9.0
+
+BoxLayout:
+  TouchHandlerBoxLayout:
+  # BoxLayout:
+
+    padding: 50, 50
+    on_really_touch_down: app.on_background_touch()
+    on_really_touch_move: app.on_background_touch_move()
+
+    TouchAwareButton:
+      text: "Button One"
+      on_really_touch_down: app.on_button_touch(self.text)
+      on_really_touch_move: app.on_button_touch_move(self.text)
+
+    TouchAwareButton:
+      text: "Button Two"
+      on_really_touch_down: app.on_button_touch(self.text)
+      on_really_touch_move: app.on_button_touch_move(self.text)
+
+  BoxLayout:
+    Button:
+      text: "hi"

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from flask import Flask
 from flask import request
 import time
@@ -8,31 +7,42 @@ app = Flask(__name__)
 
 
 @app.route("/", methods=["POST", "GET"])
-def hello_world():
+def test_root():
     try:
         message = request.form["message"]
-        return do_something(message)
+        return report_message(message)
     except Exception as e:
-        print(e)
+        print("ERROR: ", e)
         return "error"
 
 
 @app.route("/led", methods=["POST", "GET"])
-def hello_world2():
+def test_led():
     try:
         message = str(dict(request.form))
-        return do_something(message)
+        return report_message(message)
     except Exception as e:
-        print(e)
+        print("ERROR: ", e)
         return "error: "
 
 
-def do_something(message):
+@app.route("/test", methods=["POST", "GET"])
+def test_connection():
+    try:
+        message = str(dict(request.form))
+        print('test connection request received: ', message)
+        return "roger"
+    except Exception as e:
+        print("ERROR: ", e)
+        return "error: "
+
+
+def report_message(message):
     current_time = time.ctime()
     towrite = current_time + ": " + message
     with open("messages.log", "a") as f:
-        f.write(towrite+"\n")
-        print(message)
+        f.write(towrite + "\n")
+        print("Message received: ", message)
     return "message received " + towrite
 
 
