@@ -1,0 +1,23 @@
+ShowcaseScreen:
+    name: 'Connection'
+    on_enter: app.controller.set_preset('colorpicker')
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+
+        Button:
+            text: "Test connection"
+            on_release: app.client.test_connection()
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+
+        Button:
+            text: "Test LEDs"
+            on_release: app.client.test_leds()

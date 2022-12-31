@@ -1,0 +1,48 @@
+ShowcaseScreen:
+    name: 'Color Picker'
+    on_enter: app.controller.set_preset('colorpicker'), app.controller.send_color_slider_values(hsv_sldr.myrgb)
+    fullscreen: True
+
+    BoxLayout:
+        height: '600dp'
+        size_hint_y: None
+        orientation: "vertical"
+     
+        ToggleButton:
+            text: "LED status"
+            state: 'down'
+            on_release: app.controller.send_toggle_led(self.state)
+
+        HSVSliderGroup:
+            id: hsv_sldr
+            on_touch_move: app.controller.send_color_slider_values(self.myrgb)
+            on_touch_up: app.controller.send_color_slider_values(self.myrgb)
+
+    # BoxLayout:
+    #     size_hint_y: None
+    #     height: '48dp'
+
+    #     Label:
+    #         text: 'Switch active'
+    #     Switch:
+    #         active: True
+
+    # BoxLayout:
+    #     size_hint_y: None
+    #     height: '48dp'
+
+    #     Label:
+    #         text: 'Switch off & disabled'
+    #     Switch:
+    #         disabled: True
+    #         active: False
+
+    # BoxLayout:
+    #     size_hint_y: None
+    #     height: '48dp'
+
+    #     Label:
+    #         text: 'Switch on & disabled'
+    #     Switch:
+    #         disabled: True
+    #         active: True

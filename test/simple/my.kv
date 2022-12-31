@@ -1,0 +1,16 @@
+#:kivy 2.1.0
+
+BoxLayout:
+    # on_touch_up: app.test()
+    on_touch_up: app.dh.test2()
+
+    Slider:
+        min: 0
+        max: 10
+        id: sldr1
+
+    Button:
+        text: 'Hello from test.kv'
+
+    # Label:
+    #     text: str(sldr1.value)

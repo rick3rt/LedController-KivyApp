@@ -1,0 +1,74 @@
+ShowcaseScreen:
+    name: 'Select Preset'
+    fullscreen: True
+    on_enter: app.controller.set_preset(spin_select.text)
+
+    Spinner:
+        id: spin_select
+        text: app.controller.presets[0]
+        values: app.controller.presets
+        size_hint_y: None
+        height: '48dp'
+        on_text: app.controller.set_preset(self.text)
+    
+    BoxLayout:
+        orientation: 'vertical'
+        # on_touch_move: app.controller.send_fire_slider_values(sldr_spark.value, sldr_cool.value, sldr_fps.value, sldr_palno.value)
+        # on_touch_up: app.controller.send_fire_slider_values(sldr_spark.value, sldr_cool.value, sldr_fps.value, sldr_palno.value)
+        on_touch_move: app.controller.send_slider_values(root)
+        on_touch_up: app.controller.send_slider_values(root)
+
+        HeadingLabel:
+            text: "General parameters"
+
+        SliderWithLabel:
+            id: sldr_fps
+            lbl: "Framerate"
+            min: 1
+            max: 120
+            value: 60
+
+        SliderWithLabel:
+            id: sldr_huespeed
+            lbl: "Hue speed"
+            min: 1
+            max: 80
+            value: 20
+        
+        SliderWithLabel:
+            id: sldr_hueinc
+            lbl: "Hue increment"
+            min: 1
+            max: 10
+            value: 1
+
+        SliderWithLabel:
+            id: sldr_bpm
+            lbl: "BPM"
+            min: 1
+            max: 220
+            value: 62
+
+        HeadingLabel:
+            text: "Fire parameters"
+
+        SliderWithLabel:
+            id: sldr_spark
+            lbl: "Sparking"
+            min: 0
+            max: 255
+            value: 120
+
+        SliderWithLabel:
+            id: sldr_cool
+            lbl: "Cooling"
+            min: 0
+            max: 255
+            value: 55
+
+        SliderWithLabel:
+            id: sldr_palno
+            lbl: "Palette no."
+            min: 0
+            max: 10
+            value: 0

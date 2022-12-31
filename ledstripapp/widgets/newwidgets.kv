@@ -1,0 +1,53 @@
+#:import SliderWithLabel ledstripapp.widgets.newwidgets.SliderWithLabel
+
+<SliderWithLabel@BoxLayout>:
+    orientation: 'horizontal'
+    lbl: ""
+    min: 0 
+    max: 1
+    value: 0.5
+    round_val: 0
+    Label:
+        text: root.lbl
+        width: '100dp'
+        size_hint_x: None
+    Slider: 
+        id: sldr
+        min: root.min 
+        max: root.max 
+        value: root.value 
+        bind: root.on_value_change(self, self.value)
+    Label: 
+        text: ("{:." + str(root.round_val) + "f}").format(sldr.value)
+        width: '80dp'
+        size_hint_x: None
+
+<Separator@Widget>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<HSeparator@Separator>:
+    size_hint_y: None
+    height: dp(2)
+
+<VSeparator@Separator>:
+    size_hint_x: None
+    width: dp(2)
+
+<HeadingLabel@BoxLayout>:
+    orientation: 'vertical'
+    text: ""
+    HSeparator:
+    Label:
+        # height: 30
+        font_size: '25dp'
+        halign: 'left'
+        # size_hint: 1.0, 1.0
+        # text_size: (self.size[0], 30)
+        text: root.text
+    HSeparator:
+
