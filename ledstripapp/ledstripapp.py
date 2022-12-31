@@ -56,10 +56,6 @@ class ShowcaseApp(App):
         self.screens = {}
         self.available_screens = [
             'Select Preset', 'Color Picker', 'Connection', 'Empty',
-            # 'Buttons', 'ToggleButton', 'Sliders', 'ProgressBar', 'Switches',
-            # 'CheckBoxes', 'TextInputs', 'Accordions', 'FileChoosers',
-            # 'Carousel', 'Bubbles', 'CodeInput', 'DropDown', 'Spinner',
-            # 'Scatter', 'Splitter', 'RstDocument', 'Popups', 'ScreenManager'
         ]
         self.screen_names = self.available_screens
         curdir = dirname(__file__)
