@@ -6,7 +6,7 @@
     {
       "label": "run app",
       "type": "shell",
-      "command": "${config:python.pythonPath} main.py --size=500x1000 --dpi=50",
+      "command": "${config:python.pythonPath} main.py --size=500x1000 --dpi=300",
       "problemMatcher": [],
       "group": {
         "kind": "build",

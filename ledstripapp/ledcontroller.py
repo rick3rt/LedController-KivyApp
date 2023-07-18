@@ -9,6 +9,7 @@ class LEDController:
         self.app = App.get_running_app()
         self.LED_on = True
         self.presets = (
+            'ColorSweep',
             'Fire',
             'Rainbow',
             'Confetti',
